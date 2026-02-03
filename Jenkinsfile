@@ -22,5 +22,16 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+        stage('Deploy-To-Nginx') {
+    steps {
+        sshagent(['nginx']) {
+            sh '''
+              scp -o StrictHostKeyChecking=no -r \
+              dist/* root@172.17.0.2:/usr/share/nginx/html
+            '''
+            }
+          }
+        }
+            
     }
 }
