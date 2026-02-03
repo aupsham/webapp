@@ -27,7 +27,7 @@ pipeline {
         sshagent(['nginx']) {
             sh '''
               scp -o StrictHostKeyChecking=no -r \
-              dist/* root@172.17.0.2:/usr/share/nginx/html
+              target/* root@172.17.0.2:/usr/share/nginx/html
             '''
             }
           }
